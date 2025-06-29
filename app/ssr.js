@@ -16,6 +16,7 @@ import {getRuntime} from '@salesforce/pwa-kit-runtime/ssr/server/express'
 import {defaultPwaKitSecurityHeaders} from '@salesforce/pwa-kit-runtime/utils/middleware'
 import {getConfig} from '@salesforce/pwa-kit-runtime/utils/ssr-config'
 import {getAppOrigin} from '@salesforce/pwa-kit-react-sdk/utils/url'
+import 'dotenv/config';
 
 const config = getConfig()
 
@@ -349,6 +350,7 @@ const {handler} = runtime.createHandler(options, (app) => {
             )
         })
     })
+    app.get('/fetchCmsData', handlerCMS)
 
     app.get('/robots.txt', runtime.serveStaticFile('static/robots.txt'))
     app.get('/favicon.ico', runtime.serveStaticFile('static/ico/favicon.ico'))
@@ -356,6 +358,37 @@ const {handler} = runtime.createHandler(options, (app) => {
     app.get('/worker.js(.map)?', runtime.serveServiceWorker)
     app.get('*', runtime.render)
 })
+
+async function fetchCMSData() {
+  const key = process.env.CMS_API_KEY;
+  if (!key) {
+    throw new Error("Environment variable CMS_API_KEY isn't set.");
+  }
+
+const response = await fetch("https://api.example.com/", {
+    headers: {
+      Authorization: "Bearer " + key,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`API request failed with status ${response.status}`);
+  }
+
+  const data = await response.json();
+  return data;
+}
+
+async function handlerCMS(req, res) {
+  try {
+    const data = await fetchCMSData();
+    return res.json(data);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+}
+
 // SSR requires that we export a single handler function called 'get', that
 // supports AWS use of the server that we created above.
 export const get = handler
+
