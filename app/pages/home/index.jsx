@@ -25,6 +25,8 @@ import {
     Link
 } from '@salesforce/retail-react-app/app/components/shared/ui'
 
+import { getConfig } from "@salesforce/pwa-kit-runtime/utils/ssr-config";
+
 // Project Components
 import Hero from '@salesforce/retail-react-app/app/components/hero'
 import Seo from '@salesforce/retail-react-app/app/components/seo'
@@ -72,6 +74,10 @@ const Home = () => {
     const intl = useIntl()
     const einstein = useEinstein()
     const {pathname} = useLocation()
+
+    const config = getConfig();
+    const enableFeature = config.app.enableFeature;
+    
 
     const {res} = useServerContext()
     if (res) {
@@ -320,6 +326,9 @@ const Home = () => {
                 }
                 maxWidth={'xl'}
             />
+            <section>
+                {enableFeature && <h1>My New Feature</h1>}
+            </section>
         </Box>
     )
 }
