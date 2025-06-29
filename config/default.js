@@ -6,8 +6,32 @@
  */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const sites = require('./sites.js')
+//require('dotenv').config();
+
+function parseEnvVar(envVarName) {
+  
+  //doesn't work on server  
+  val = process.env[envVarName];
+
+  //val = process.env.ENABLE_FEATURE;
+
+  if (val === undefined) {
+    throw new Error(`Environment variable ${envVarName} is required.`);
+  }
+  try {
+    return JSON.parse(val);
+  } catch (err) {
+    throw new Error(
+      `Environment variable ${envVarName} must be a valid JSON string.`
+    );
+  }
+}
+
 module.exports = {
     app: {
+
+        enableFeature: parseEnvVar("ENABLE_FEATURE") || false,
+
         // Customize settings for your url
         url: {
             // Determine where the siteRef is located. Valid values include 'path|query_param|none'. Defaults to: 'none'
