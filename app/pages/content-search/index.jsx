@@ -36,7 +36,7 @@ ContentSearch.getTemplateName = () => 'content-search'
 ContentSearch.getProps = async () => {
     let contentResult
     const res = await fetch(
-        `${getAppOrigin()}/mobify/proxy/ocapi/s/RefArch/dw/shop/v20_3/content_search?q=about&client_id=8e90cc31-f040-4dcf-95b6-2c5451c15b48`
+        `${getAppOrigin()}/mobify/proxy/ocapi/s/RefArch/dw/shop/v21_3/content_search?q=about&client_id=c5aa78fa-6976-40a4-91de-c6bee8f7a73d`
         )
     if(res.ok) {
         contentResult = await res.json()
