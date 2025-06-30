@@ -198,7 +198,7 @@ const App = (props) => {
     // Fetch the privacy policy content asset
     const {data: privacyPolicy} = useQuery({
         queryKey: ['footerpolicy'],
-        queryFn: () => { return fetch(`${getAppOrigin()}/mobify/proxy/ocapi/s/RefArch/dw/shop/v20_2/content/privacy-policy?client_id=8e90cc31-f040-4dcf-95b6-2c5451c15b48`).then(res=>res.json()).then((json) => {
+        queryFn: () => { return fetch(`${getAppOrigin()}/mobify/proxy/ocapi/s/RefArch/dw/shop/v21_3/content/privacy-policy?client_id=c5aa78fa-6976-40a4-91de-c6bee8f7a73d`).then(res=>res.json()).then((json) => {
             console.log(json)
             return json
         })

@@ -10,7 +10,7 @@ const ContentDetails = () => {
     /*
     const {data, error, isLoading} = useQuery({
         queryKey: [params.id],
-        queryFn: () => { return fetch(`http://localhost:3000/mobify/proxy/ocapi/s/RefArch/dw/shop/v20_2/content/${params.id}?client_id=8e90cc31-f040-4dcf-95b6-2c5451c15b48`).then(res=>res.json()).then((json) => {
+        queryFn: () => { return fetch(`http://localhost:3000/mobify/proxy/ocapi/s/RefArch/dw/shop/v21_3/content/${params.id}?client_id=c5aa78fa-6976-40a4-91de-c6bee8f7a73d`).then(res=>res.json()).then((json) => {
             console.log(json)
             return json
           })
@@ -19,7 +19,7 @@ const ContentDetails = () => {
     })*/
 
     const {data, error, isLoading} = useQuery([params.id], () => {
-        return fetch(`${getAppOrigin()}/mobify/proxy/ocapi/s/RefArch/dw/shop/v20_2/content/${params.id}?client_id=8e90cc31-f040-4dcf-95b6-2c5451c15b48`).then(res=>res.json()).then((json) => {
+        return fetch(`${getAppOrigin()}/mobify/proxy/ocapi/s/RefArch/dw/shop/v21_3/content/${params.id}?client_id=c5aa78fa-6976-40a4-91de-c6bee8f7a73d`).then(res=>res.json()).then((json) => {
             console.log(json)
             return json
           })
