@@ -42,7 +42,7 @@ ContentSearch.getProps = async () => {
         contentResult = await res.json()
     }
     if(process.env.NODE_ENV != 'production') {
-        console.log('contentResult', contentResult)
+        //console.log('contentResult', contentResult)
     }
     return {contentResult}
 }   

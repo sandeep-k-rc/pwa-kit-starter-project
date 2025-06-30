@@ -55,7 +55,8 @@ const MyHeader = ({name}) => {
         <h1>
         <Box>
             <h1>Hello {name}!</h1>
-            <Alert padding="10" status="success">
+            <br/>
+            <Alert padding="4" status="success">
                 <AlertIcon />
                 Chakra UI components unlocked!
             </Alert>
@@ -110,7 +111,7 @@ const Home = () => {
                 description="Commerce Cloud Retail React App"
                 keywords="Commerce Cloud, Retail React App, React Storefront"
             />
-            <MyHeader name="SFCC Trainee"/>
+            <MyHeader name="Sandeep"/>
             <Hero
                 title={intl.formatMessage({
                     defaultMessage: 'The React PWA Starter Store for Retail',
