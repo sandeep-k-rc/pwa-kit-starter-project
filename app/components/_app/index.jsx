@@ -255,7 +255,7 @@ const App = (props) => {
         })
         const fetchStore = async () => {
             const res = await fetch(
-                `${getAppOrigin()}/mobify/proxy/ocapi/s/RefArch/dw/shop/v20_2/stores?latitude=${GEO_LOCATION.lat}&longitude=${GEO_LOCATION.long}&client_id=8e90cc31-f040-4dcf-95b6-2c5451c15b48`
+                `${getAppOrigin()}/mobify/proxy/ocapi/s/RefArch/dw/shop/v20_2/stores?latitude=${GEO_LOCATION.lat}&longitude=${GEO_LOCATION.long}&client_id=c5aa78fa-6976-40a4-91de-c6bee8f7a73d`
             )
             if (res.ok) {
                 const storeResult = await res.json()
