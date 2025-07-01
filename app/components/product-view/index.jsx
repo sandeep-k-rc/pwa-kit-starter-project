@@ -102,7 +102,7 @@ const ProductView = forwardRef(
         {
             product,
             category,
-            promotions,
+            //promotions,
             showFullLink = false,
             imageSize = 'md',
             isWishlistLoading = false,
@@ -129,7 +129,7 @@ const ProductView = forwardRef(
         const [activePromotionId, setActivePromotionId] = useState(undefined) // this is the hovered over promotion, set onOpen, removed onClose
         const {productPromotions} = product || {} // this destructures productPromotions from the product API call, used in the iterator loop to show promo calloutMsg
 
-        /*const {data: promotions} = usePromotions(
+        const {data: promotions} = usePromotions(
             {
                 parameters: {
                     ids: activePromotionId
@@ -138,8 +138,8 @@ const ProductView = forwardRef(
             {
                 enabled: !isProductLoading
             }
-        )*/
-        const promos = promotions?.data || [] //this takes the response from the hook above, and sets it in "promos" - this is what we'll use to build the tooltip.*/
+        )
+        const promos = promotions?.data || [] //this takes the response from the hook above, and sets it in "promos" - this is what we'll use to build the tooltip.
 
         const {currency: activeCurrency} = useCurrency()
         const showToast = useToast()
@@ -644,7 +644,7 @@ const ProductView = forwardRef(
                             </HideOnDesktop>
                             {isProductASet && <p>{product?.shortDescription}</p>}
                         </VStack>
-                        { /*Show Promotions: promotions.data is the array to loop over*/} 
+                        { /*Show Promotions: promotions.data is the array to loop over
                          {promotions && (
                             <Box>
                                <Text>Available Promotions:</Text>
@@ -654,7 +654,7 @@ const ProductView = forwardRef(
                                     </Tooltip>
                                 ))}
                             </Box>
-                        )}
+                        )*/}
 
 
                         {/* Show Promotions: productPromotions is the array to loop over */}

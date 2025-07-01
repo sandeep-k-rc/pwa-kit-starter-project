@@ -56,8 +56,9 @@ import {useHistory, useLocation, useParams} from 'react-router-dom'
 import {useToast} from '@salesforce/retail-react-app/app/hooks/use-toast'
 import {useWishList} from '@salesforce/retail-react-app/app/hooks/use-wish-list'
 
-import {pluckIds} from '../../utils/utils'
+/*import {pluckIds} from '../../utils/utils'
 import {usePromotions} from '@salesforce/commerce-sdk-react'
+*/
 
 const ProductDetail = () => {
     const {formatMessage} = useIntl()
@@ -114,8 +115,8 @@ const ProductDetail = () => {
         }
     )
     // Get promotionIds as a string of comma-separated values
-    const promotionIds = pluckIds(product?.productPromotions, 'promotionId')
-    const {data: promotions} = usePromotions(
+    //const promotionIds = pluckIds(product?.productPromotions, 'promotionId')
+    /*const {data: promotions} = usePromotions(
         {
             parameters: {
                 ids: promotionIds
@@ -125,7 +126,9 @@ const ProductDetail = () => {
             enabled: !isProductLoading
         }
     )
-    const promos = promotions?.data || []
+    const promos = promotions?.data || []*/
+
+    /****************************** Category *********************************/
 
     // Note: Since category needs id from product detail, it can't be server side rendered atm
     // until we can do dependent query on server
@@ -479,7 +482,7 @@ const ProductDetail = () => {
                     <Fragment>
                         <ProductView
                             product={product}
-                            promotions={promos || []}
+                            //promotions={promos || []}
                             category={primaryCategory?.parentCategoryTree || []}
                             addToCart={
                                 isProductASet
