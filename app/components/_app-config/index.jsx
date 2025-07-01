@@ -28,9 +28,9 @@ import {withReactQuery} from '@salesforce/pwa-kit-react-sdk/ssr/universal/compon
 import {useCorrelationId} from '@salesforce/pwa-kit-react-sdk/ssr/universal/hooks'
 import {ReactQueryDevtools} from '@tanstack/react-query-devtools'
 import {DEFAULT_DNT_STATE} from '@salesforce/retail-react-app/app/constants'
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
 
 import {withLegacyGetProps} from '@salesforce/pwa-kit-react-sdk/ssr/universal/components/with-legacy-get-props' 
-
 
 /**
  * Use the AppConfig component to inject extra arguments into the getProps
@@ -51,28 +51,31 @@ const AppConfig = ({children, locals = {}}) => {
     const appOrigin = useAppOrigin()
 
     const passwordlessCallback = locals.appConfig.login?.passwordless?.callbackURI
-
+    const queryClient = new QueryClient()
     return (
-        <CommerceApiProvider
-            shortCode={commerceApiConfig.parameters.shortCode}
-            clientId={commerceApiConfig.parameters.clientId}
-            organizationId={commerceApiConfig.parameters.organizationId}
-            siteId={locals.site?.id}
-            locale={locals.locale?.id}
-            currency={locals.locale?.preferredCurrency}
-            redirectURI={`${appOrigin}/callback`}
-            proxy={`${appOrigin}${commerceApiConfig.proxyPath}`}
-            headers={headers}
-            OCAPISessionsURL={`${appOrigin}/mobify/proxy/ocapi/s/${locals.site?.id}/dw/shop/v22_8/sessions`}
-            defaultDnt={DEFAULT_DNT_STATE}
-            logger={createLogger({packageName: 'commerce-sdk-react'})}
-            passwordlessLoginCallbackURI={passwordlessCallback}
-        >
-            <MultiSiteProvider site={locals.site} locale={locals.locale} buildUrl={locals.buildUrl}>
-                <ChakraProvider theme={theme}>{children}</ChakraProvider>
-            </MultiSiteProvider>
-            <ReactQueryDevtools />
-        </CommerceApiProvider>
+        
+        <QueryClientProvider client={queryClient}>
+            <CommerceApiProvider
+                    shortCode={commerceApiConfig.parameters.shortCode}
+                    clientId={commerceApiConfig.parameters.clientId}
+                    organizationId={commerceApiConfig.parameters.organizationId}
+                    siteId={locals.site?.id}
+                    locale={locals.locale?.id}
+                    currency={locals.locale?.preferredCurrency}
+                    redirectURI={`${appOrigin}/callback`}
+                    proxy={`${appOrigin}${commerceApiConfig.proxyPath}`}
+                    headers={headers}
+                    OCAPISessionsURL={`${appOrigin}/mobify/proxy/ocapi/s/${locals.site?.id}/dw/shop/v22_8/sessions`}
+                    defaultDnt={DEFAULT_DNT_STATE}
+                    logger={createLogger({packageName: 'commerce-sdk-react'})}
+                    passwordlessLoginCallbackURI={passwordlessCallback}
+                >
+                <MultiSiteProvider site={locals.site} locale={locals.locale} buildUrl={locals.buildUrl}>
+                    <ChakraProvider theme={theme}>{children}</ChakraProvider>
+                </MultiSiteProvider>
+                <ReactQueryDevtools />
+            </CommerceApiProvider>
+        </QueryClientProvider>
     )
 }
 
