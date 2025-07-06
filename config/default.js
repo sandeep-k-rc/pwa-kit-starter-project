@@ -35,11 +35,11 @@ module.exports = {
         // Customize settings for your url
         url: {
             // Determine where the siteRef is located. Valid values include 'path|query_param|none'. Defaults to: 'none'
-            // site: 'none',
+            site: 'path',
             // Determine where the localeRef is located. Valid values include 'path|query_param|none'. Defaults to: 'none'
-            locale: 'none',
+            locale: 'path',
             // This boolean value dictates whether default site or locale values are shown in the url. Defaults to: false
-            // showDefaults: true,
+            showDefaults: true,
             // This boolean value dictates whether the plus sign (+) is interpreted as space for query param string. Defaults to: false
             interpretPlusSignAsSpace: false
         },
@@ -77,9 +77,10 @@ module.exports = {
         // The default site for your app. This value will be used when a siteRef could not be determined from the url
         defaultSite: 'RefArch',
         // Provide aliases for your sites. These will be used in place of your site id when generating paths throughout the application.
-        // siteAliases: {
-        //     RefArch: 'us'
-        // },
+        siteAliases: {
+             RefArch: 'refarch',
+             SMultiSite: 'multi'
+        },
         // The sites for your app, which is imported from sites.js
         sites,
         // Commerce api config
@@ -89,7 +90,7 @@ module.exports = {
                 clientId: '12345678-abcd-4abc-abcd-0123456789ab',
                 organizationId: 'f_ecom_zzkc_002',
                 shortCode: 'kv7kzm78',
-                siteId: 'RefArch'
+                siteId: 'RefArch',
             }
         },
         // Einstein api config

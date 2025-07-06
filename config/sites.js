@@ -17,7 +17,22 @@ module.exports = [
             supportedLocales: [
                 {
                     id: 'en-US',
-                    // alias: 'us',
+                    alias: 'us',
+                    preferredCurrency: 'USD'
+                }
+            ]
+        }
+    },
+    {
+        id: 'SMultiSite',
+        l10n: {
+            supportedCurrencies: ['USD'],
+            defaultCurrency: 'USD',
+            defaultLocale: 'en-US',
+            supportedLocales: [
+                {
+                    id: 'en-US',
+                    alias: 'us',
                     preferredCurrency: 'USD'
                 }
             ]
